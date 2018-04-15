@@ -17,25 +17,19 @@ router.post('/', (req, res, next) => {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'lapvv62@wru.vn',
-      pass: 'lapdeptrai123'
+      user: 'your email here',
+      pass: 'your password here'
     }
   });
-  var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+  var token = jwt.sign({ mail: email }, 'mysecret');
   var mailOptions = {
     from: 'lapvv62@wru.vn',
     to: email,
     subject: 'active email',
-    html: '<a href="http://localhost:3000/activation/' + token + '">link here</a>'
+    html: '<p>Follow this </p><a href="http://localhost:3000/activation/' + token + '">link</a>'
   };
   if (emailRecord) {
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        res.redirect('/email/' + email)
-      }
-    });
+    res.redirect('/email/' + email)
   } else {
     const newEmail = {
       "email": email,
@@ -47,7 +41,6 @@ router.post('/', (req, res, next) => {
       if (error) {
         console.log(error);
       } else {
-        console.log('Email sent: ' + info.response);
         res.redirect('/email/' + email)
       }
     });

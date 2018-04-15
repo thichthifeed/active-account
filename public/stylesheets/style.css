@@ -39,10 +39,9 @@ body {
   left: 50%;
   transform: translate(-50%,-50%);
   padding: 20px;
-  background: rgb(85, 252, 63);
+  background: rgb(122, 255, 104);
   border-radius: 4px;
   width: 40%;
-  color: #fff;
 }
 @media screen and (max-width: 800px) {
   .box {
